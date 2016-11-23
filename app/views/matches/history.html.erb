@@ -1,0 +1,30 @@
+<div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Date</th>
+      <th>Opponent</th>
+      <th>Score</th>
+      <th>Result</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @matches.each_with_index do |match| %>
+      <tr>
+        <td>
+          <%= match.date_and_time.strftime('%Y-%m-%d at %H:%M') %>
+        </td>
+        <td>
+          <%= opponent_name match %>
+        </td>
+        <td>
+          <%= match_score match %>
+        </td>
+        <td>
+          <%= match_result match %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

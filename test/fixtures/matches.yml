@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  home_contender_id: 1
+  visitor_contender_id: 1
+  date_and_time: 2016-11-22 21:01:01
+  home_contender_score: 1
+  visitor_contender_score: 1
+
+two:
+  home_contender_id: 1
+  visitor_contender_id: 1
+  date_and_time: 2016-11-22 21:01:01
+  home_contender_score: 1
+  visitor_contender_score: 1

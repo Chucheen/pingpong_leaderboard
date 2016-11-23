@@ -1,0 +1,37 @@
+<div>
+  <% opponents = User.all.reject {|user| user == current_user } %>
+  <% if opponents.present? %>
+    <%= error_shower(flash[flash.keys[0]]) if flash.key?('error') %>
+    <%= form_for @match do |f| %>
+
+      <div class="form-group">
+        <%= f.label :date_and_time, 'Match date' %>
+        <div>
+          <% default_date = DateTime.now.change(hour: 8, minute: 0) %>
+          <%= f.datetime_select :date_and_time, {start_year: default_date.year, default: default_date}, {class: 'form-control form-control-inline'}  %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :visitor_contender_id, "Opponent" %>
+        <%= f.collection_select :visitor_contender_id, User.all.reject {|user| user == current_user }, :id, :name, {}, {class: 'form-control'}  %>
+      </div>
+      <div class="form-group">
+        <%= f.label :home_contender_score, "Your score" %>
+        <%= f.number_field :home_contender_score, class: 'form-control', required: true %>
+      </div>
+      <div class="form-group">
+        <%= f.label :visitor_contender_score, "Their score" %>
+        <%= f.number_field :visitor_contender_score, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit "Save", class: "btn btn-primary" %>
+        <%= link_to 'cancel', root_path %>
+      </div>
+
+    <% end %>
+
+  <% else %>
+    <div class="alert alert-warning" role="alert">You can't have a match with yourself. Wait for more users to join.</div>
+  <% end %>
+</div>
